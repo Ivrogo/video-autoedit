@@ -1,0 +1,27 @@
+# Entornos y caches de Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Credenciales — NUNCA subir (repo público)
+credentials.json
+token.json
+*.secret
+
+# Videos y artefactos de trabajo
+output/
+work/
+logs/
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.wav
+*.m4a
+
+# Modelos de Whisper
+models/
+
+# Config local de Claude Code
+.claude/settings.local.json

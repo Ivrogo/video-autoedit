@@ -1,0 +1,50 @@
+# Configuración del pipeline de edición automática.
+# Todos los valores tienen defaults en autoedit/config.py; este archivo los sobreescribe.
+
+silence:
+  noise_db: -35        # Umbral de silencio en dB
+  min_silence: 0.5     # Duración mínima (s) para considerar un silencio
+  padding: 0.15        # Aire (s) que se deja a cada lado de la voz
+  merge_gap: 0.2       # Segmentos de voz separados por menos de esto (s) se fusionan
+  min_segment: 0.3     # Segmentos de voz más cortos que esto (s) se descartan
+
+whisper:
+  model: small         # En CI (CPU) usar small/medium; en local con GPU puedes poner large-v3
+  language: es
+  device: auto         # auto = intenta CUDA y cae a CPU int8
+
+subtitles:
+  enabled: true
+  font: Arial
+  font_size: 54
+  max_chars: 42        # Máx. caracteres por línea (hasta 2 líneas por subtítulo)
+  max_lines: 2
+  margin_v: 60         # Margen inferior en px
+  outline: 2
+  pause_break: 0.6     # Pausa (s) que fuerza corte de subtítulo
+
+audio:
+  highpass_hz: 80
+  presence_freq: 4000
+  presence_gain_db: 3
+  loudnorm_i: -14      # Loudness objetivo (LUFS)
+  loudnorm_tp: -1.5
+  loudnorm_lra: 11
+
+color:
+  enabled: true
+  contrast: 1.05
+  saturation: 1.1
+  brightness: 0.0
+  lut: null            # Ruta a un .cube para usar lut3d en vez de eq
+
+encode:
+  preset: veryfast     # veryfast en CI; en local puedes usar slow
+  crf: 20
+  audio_bitrate: 192k
+
+drive:
+  root_folder: AutoEdit
+  min_file_age_minutes: 2      # No tocar archivos subidos hace menos de esto (subida en curso)
+  stale_processing_hours: 6    # Archivos reclamados hace más de esto se re-encolan
+  time_budget_minutes: 260     # No reclamar más videos si el run lleva más de esto
